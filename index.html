@@ -439,6 +439,152 @@
             left: -30px !important;
         }
     }
+    
+@media screen and (max-width: 480px) {
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 0.8rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+        padding: 0.5rem;
+        display: block;
+    }
+
+    /* Section Spacing */
+    section {
+        padding: 4rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Kuliner Section */
+    .kuliner-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .kuliner-card {
+        margin: 0 1rem;
+    }
+
+    .kuliner-content h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Pakaian Adat Section */
+    .pakaian-adat {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .pakaian-image img {
+        height: 300px;
+    }
+
+    .pakaian-desc {
+        padding: 1rem;
+    }
+
+    .pakaian-desc h3 {
+        font-size: 1.8rem;
+    }
+
+    /* Timeline Section */
+    .timeline-card {
+        width: 100%;
+        margin: 1rem 0 !important;
+        padding: 1rem;
+    }
+
+    .timeline-card::before {
+        display: none;
+    }
+
+    .history-timeline::before {
+        display: none;
+    }
+
+    /* Art and Culture Sections */
+    .art-grid, .culture-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .art-card, .culture-card {
+        margin: 0 1rem;
+    }
+
+    .art-content h3, .culture-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .culture-details {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Add touch-friendly improvements */
+@media (hover: none) {
+    nav ul li a {
+        padding: 0.8rem;
+    }
+
+    .kuliner-card,
+    .art-card,
+    .culture-card {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .pakaian-image img {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Increase touch targets */
+    nav ul li a,
+    .timeline-card,
+    .culture-details ul li {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
     </style>
 </head>
 <body>
