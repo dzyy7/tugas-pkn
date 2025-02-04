@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesona Kutai Kartanegara</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --gold: #ffd700;
+            --dark-gold: #ccac00;
+            --light-gold: #fff4b8;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://kemenparekraf.go.id/_next/image?url=https%3A%2F%2Fapi2.kemenparekraf.go.id%2Fstorage%2Fapp%2Fuploads%2Fpublic%2F65c%2F59a%2F10a%2F65c59a10a699f993683561.jpg&w=1920&q=75');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(0,0,0,0.5));
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.9);
+            padding: 1.2rem;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem;
+            background: rgba(0,0,0,0.95);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, var(--light-gold) 25%, transparent 25%),
+                            linear-gradient(-45deg, var(--light-gold) 25%, transparent 25%);
+            background-size: 60px 60px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #333;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .content-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .kuliner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .kuliner-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .kuliner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .kuliner-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .kuliner-content {
+            padding: 2rem;
+        }
+
+        .kuliner-content h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .kuliner-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .pakaian-adat {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .pakaian-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .pakaian-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .pakaian-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .pakaian-desc {
+            padding: 2rem;
+        }
+
+        .pakaian-desc h3 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .pakaian-desc p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ornament-detail {
+            background: var(--light-gold);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .ornament-detail h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .ornament-detail ul {
+            list-style: none;
+        }
+
+        .ornament-detail ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ornament-detail ul li::before {
+            content: '•';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            background: linear-gradient(to right, #333, #000);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        footer p {
+            color: var(--light-gold);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .pakaian-adat {
+                grid-template-columns: 1fr;
+            }
+
+            .kuliner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .history-timeline {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .history-timeline::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: var(--gold);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timeline-card {
+        width: 45%;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        position: relative;
+    }
+
+    .timeline-card:nth-child(odd) {
+        margin-right: 55%;
+    }
+
+    .timeline-card:nth-child(even) {
+        margin-left: 55%;
+    }
+
+    .timeline-card::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--gold);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .timeline-card:nth-child(odd)::before {
+        right: -60px;
+    }
+
+    .timeline-card:nth-child(even)::before {
+        left: -60px;
+    }
+
+    .art-grid, .culture-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2rem;
+    }
+
+    .art-card, .culture-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .art-card:hover, .culture-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .art-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .art-content, .culture-content {
+        padding: 2rem;
+    }
+
+    .culture-details {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+    }
+
+    .culture-details h4 {
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .culture-details ul {
+        list-style: none;
+        padding-left: 1rem;
+    }
+
+    .culture-details ul li {
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .culture-details ul li::before {
+        content: '•';
+        color: var(--gold);
+        position: absolute;
+        left: -1rem;
+    }
+
+    @media (max-width: 768px) {
+        .history-timeline::before {
+            left: 0;
+        }
+
+        .timeline-card {
+            width: 90%;
+            margin: 2rem auto !important;
+        }
+
+        .timeline-card::before {
+            left: -30px !important;
+        }
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#sejarah">Sejarah</a></li>
+            <li><a href="#kuliner">Kuliner</a></li>
+            <li><a href="#pakaian">Pakaian Adat</a></li>
+            <li><a href="#kesenian">Kesenian</a></li>
+            <li><a href="#budaya">Budaya</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Pesona Kutai Kartanegara</h1>
+            <p>Warisan Budaya Kalimantan Timur yang Megah</p>
+        </div>
+    </div>
+    <section id="sejarah">
+        <div class="content-container">
+            <h2 class="section-title" data-aos="fade-up">Sejarah Kutai Kartanegara</h2>
+            <div class="history-timeline">
+                <div class="timeline-card" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Masa Awal (400 M)</h3>
+                        <p>Kerajaan Kutai Martadipura atau Kutai Ing Martadipura merupakan kerajaan Hindu tertua di Indonesia yang berdiri sekitar abad ke-4 Masehi. Bukti sejarah berupa prasasti Yupa menunjukkan keberadaan kerajaan ini di bawah pemerintahan Raja Mulawarman.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Berdirinya Kutai Kartanegara (1300 M)</h3>
+                        <p>Kutai Kartanegara didirikan oleh Aji Batara Agung Dewa Sakti pada abad ke-13. Beliau adalah raja pertama yang membangun fondasi Kesultanan Kutai Kartanegara dengan pusat pemerintahan di Kutai Lama.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Masa Kejayaan (1600-1800)</h3>
+                        <p>Di bawah kepemimpinan Sultan Aji Muhammad Salehuddin, Kutai Kartanegara mencapai masa kejayaannya. Perdagangan internasional berkembang pesat, dan hubungan diplomatik dengan kerajaan lain terjalin dengan baik.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Era Modern</h3>
+                        <p>Saat ini, Kutai Kartanegara menjadi kabupaten yang kaya akan sumber daya alam dan warisan budaya. Tradisi kesultanan tetap dilestarikan melalui berbagai upacara adat dan festival budaya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="kuliner">
+        <div class="content-container">
+            <h2 class="section-title" data-aos="fade-up">Kuliner Khas Kutai</h2>
+            <div class="kuliner-grid">
+                <div class="kuliner-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://foto.kontan.co.id/x1J31e0gY-xSl0moLRlGEHUp2oM=/smart/filters:format(webp)/2022/03/17/1795779015p.jpg" alt="Kepiting Soka">
+                    <div class="kuliner-content">
+                        <h3>Kepiting Soka</h3>
+                        <p>Hidangan kepiting khas Kutai yang dimasak dengan bumbu tradisional. Kepiting ini dikenal dengan dagingnya yang lembut dan rasanya yang gurih.</p>
+                    </div>
+                </div>
+                
+                <div class="kuliner-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://img-global.cpcdn.com/recipes/3dff46503634f57e/680x482cq70/ayam-cincane-foto-resep-utama.jpg" alt="Ayam Cincane">
+                    <div class="kuliner-content">
+                        <h3>Ayam Cincane</h3>
+                        <p>Ayam bakar khas Kutai yang diolah dengan bumbu khusus dan dipanggang hingga kecokelatan. Disajikan dengan sambal terasi dan lalapan.</p>
+                    </div>
+                </div>
+
+                <div class="kuliner-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/94/2024/04/28/ikan-asinnn-1865250440.jpg" alt="Sambal Ikan Asin">
+                    <div class="kuliner-content">
+                        <h3>Sambal Ikan Asin</h3>
+                        <p>Sambal tradisional yang terbuat dari ikan asin yang dihaluskan dengan cabai dan bumbu rempah khas Kutai.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pakaian" style="background-color: #f9f9f9;">
+        <div class="content-container">
+            <h2 class="section-title" data-aos="fade-up">Pakaian Adat Kutai</h2>
+            <div class="pakaian-adat">
+                <div class="pakaian-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1584184924103-e310d9dc82fc" alt="Pakaian Adat Kutai">
+                </div>
+                <div class="pakaian-desc" data-aos="fade-left">
+                    <h3>Pakaian Adat Tradisional</h3>
+                    <p>Pakaian adat Kutai mencerminkan keagungan dan kemegahan kerajaan Kutai Kartanegara. Untuk pria, pakaian terdiri dari baju kurung teluk belanga dan celana panjang, dilengkapi dengan sarung yang diikatkan di pinggang.</p>
+                    <p>Untuk wanita, mengenakan baju kurung panjang dengan motif khas Kutai, rok panjang atau sarung, dan selendang yang diletakkan di bahu.</p>
+                    
+                    <div class="ornament-detail">
+                        <h4>Ornamen dan Aksesoris:</h4>
+                        <ul>
+                            <li>Mahkota atau Tanjak untuk pria</li>
+                            <li>Kalung Kawat dengan liontin khas Kutai</li>
+                            <li>Gelang Tapih berukir motif tradisional</li>
+                            <li>Pending (ikat pinggang) emas atau kuningan</li>
+                            <li>Selendang dengan motif Kutai</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="kesenian" style="background-color: #f9f9f9;">
+        <div class="content-container">
+            <h2 class="section-title" data-aos="fade-up">Kesenian Tradisional</h2>
+            <div class="art-grid">
+                <div class="art-card" data-aos="fade-up">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Tari_Gantar_Benuaq.JPG" alt="Tari Gantar">
+                    <div class="art-content">
+                        <h3>Tari Gantar</h3>
+                        <p>Tarian tradisional yang menggambarkan kegembiraan masyarakat Kutai dalam menyambut panen. Ditarikan dengan menggunakan tongkat bambu yang disebut gantar.</p>
+                    </div>
+                </div>
+
+                <div class="art-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://i0.wp.com/suarausu.or.id/wp-content/uploads/2023/07/WhatsApp-Image-2023-07-20-at-21.26.00-jpeg.webp?fit=648%2C432&ssl=1" alt="Musik Tingkilan">
+                    <div class="art-content">
+                        <h3>Musik Tingkilan</h3>
+                        <p>Seni musik tradisional menggunakan alat musik gambus, ketipung, dan biola. Biasanya dimainkan pada acara adat dan pernikahan.</p>
+                    </div>
+                </div>
+
+                <div class="art-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://haloborneo.wordpress.com/wp-content/uploads/2015/06/y-s-2bagus2bsuseno252c2b15.jpg" alt="Mamanda">
+                    <div class="art-content">
+                        <h3>Teater Mamanda</h3>
+                        <p>Seni teater tradisional yang menceritakan kehidupan istana dan masyarakat Kutai. Pertunjukan ini mengandung nilai-nilai moral dan pembelajaran.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="budaya">
+        <div class="content-container">
+            <h2 class="section-title" data-aos="fade-up">Budaya dan Tradisi</h2>
+            <div class="culture-grid">
+                <div class="culture-card" data-aos="fade-up">
+                    <center><h3>Festival Erau</h3></center>
+                    <div class="culture-content">
+                        <p>Festival tahunan terbesar yang menampilkan berbagai ritual adat, pertunjukan seni, dan perayaan budaya. Erau berasal dari kata 'eroh' yang berarti ramai, riuh, suasana yang penuh sukacita.</p>
+                        <div class="culture-details">
+                            <h4>Rangkaian Acara:</h4>
+                            <ul>
+                                <li>Belimbur (ritual mandi safar)</li>
+                                <li>Mengulur naga (ritual melarung naga)</li>
+                                <li>Deder (ritual pengobatan)</li>
+                                <li>Bepelas (ritual pembersihan diri)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="culture-card" data-aos="fade-up" data-aos-delay="100">
+                    <center><h3>Upacara Adat Pernikahan</h3></center>
+                    <div class="culture-content">
+                        <p>Prosesi pernikahan adat Kutai memiliki tahapan yang panjang dan penuh makna. Setiap tahapan memiliki nilai filosofis yang mencerminkan kearifan lokal.</p>
+                        <div class="culture-details">
+                            <h4>Tahapan Upacara:</h4>
+                            <ul>
+                                <li>Bepacar (malam berinai)</li>
+                                <li>Berarak (iring-iringan pengantin)</li>
+                                <li>Bepadah (nasihat pernikahan)</li>
+                                <li>Tijak Tanah (injak tanah)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="culture-card" data-aos="fade-up" data-aos-delay="200">
+                    <center><h3>Tradisi Kelahiran</h3></center>
+                    <div class="culture-content">
+                        <p>Masyarakat Kutai memiliki tradisi khusus dalam menyambut kelahiran bayi, yang mencerminkan harapan dan doa bagi sang bayi.</p>
+                        <div class="culture-details">
+                            <h4>Ritual Kelahiran:</h4>
+                            <ul>
+                                <li>Tepung Tawar</li>
+                                <li>Turun Tanah</li>
+                                <li>Gunting Rambut</li>
+                                <li>Beluluh (pembersihan)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Pirlo, Brillian, Nabil, Alfino, Dzaky, Wisnu<br> &copy; 2025 Pesona Kutai Kartanegara. </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
