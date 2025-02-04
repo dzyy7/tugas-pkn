@@ -439,163 +439,134 @@
             left: -30px !important;
         }
     }
-    
-@media screen and (max-width: 480px) {
-    /* Hero Section */
-    .hero-content h1 {
-        font-size: 2rem;
-        padding: 0 1rem;
-    }
-
-    .hero-content p {
-        font-size: 1.2rem;
-        padding: 0 1rem;
-    }
-
-    /* Navigation */
     nav {
-        padding: 0.8rem;
-    }
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.9);
+            padding: 1.2rem;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
 
-    nav ul {
-        flex-direction: column;
-        gap: 1rem;
-    }
+        nav.scrolled {
+            padding: 0.8rem;
+            background: rgba(0,0,0,0.95);
+        }
 
-    nav ul li {
-        margin: 0;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    nav ul li a {
-        font-size: 1rem;
-        padding: 0.5rem;
-        display: block;
-    }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
 
-    /* Section Spacing */
-    section {
-        padding: 4rem 1rem;
-    }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
 
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Kuliner Section */
-    .kuliner-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+        nav ul li {
+            margin: 0 2rem;
+        }
 
-    .kuliner-card {
-        margin: 0 1rem;
-    }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
 
-    .kuliner-content h3 {
-        font-size: 1.5rem;
-    }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
 
-    /* Pakaian Adat Section */
-    .pakaian-adat {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
 
-    .pakaian-image img {
-        height: 300px;
-    }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
 
-    .pakaian-desc {
-        padding: 1rem;
-    }
+            nav ul {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(0,0,0,0.95);
+                padding: 1rem 0;
+            }
 
-    .pakaian-desc h3 {
-        font-size: 1.8rem;
-    }
+            nav ul.active {
+                display: flex;
+            }
 
-    /* Timeline Section */
-    .timeline-card {
-        width: 100%;
-        margin: 1rem 0 !important;
-        padding: 1rem;
-    }
+            nav ul li {
+                margin: 1rem 0;
+                text-align: center;
+            }
 
-    .timeline-card::before {
-        display: none;
-    }
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
 
-    .history-timeline::before {
-        display: none;
-    }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
 
-    /* Art and Culture Sections */
-    .art-grid, .culture-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .art-card, .culture-card {
-        margin: 0 1rem;
-    }
-
-    .art-content h3, .culture-content h3 {
-        font-size: 1.5rem;
-    }
-
-    .culture-details {
-        margin-top: 1rem;
-        padding-top: 1rem;
-    }
-
-    /* Footer */
-    footer {
-        padding: 2rem 1rem;
-    }
-
-    footer p {
-        font-size: 0.9rem;
-    }
-}
-
-/* Add touch-friendly improvements */
-@media (hover: none) {
-    nav ul li a {
-        padding: 0.8rem;
-    }
-
-    .kuliner-card,
-    .art-card,
-    .culture-card {
-        transform: none !important;
-        transition: none !important;
-    }
-
-    .pakaian-image img {
-        transform: none !important;
-        transition: none !important;
-    }
-
-    /* Increase touch targets */
-    nav ul li a,
-    .timeline-card,
-    .culture-details ul li {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-    }
-}
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="#sejarah">Sejarah</a></li>
-            <li><a href="#kuliner">Kuliner</a></li>
-            <li><a href="#pakaian">Pakaian Adat</a></li>
-            <li><a href="#kesenian">Kesenian</a></li>
-            <li><a href="#budaya">Budaya</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <li><a href="#sejarah">Sejarah</a></li>
+                <li><a href="#kuliner">Kuliner</a></li>
+                <li><a href="#pakaian">Pakaian Adat</a></li>
+                <li><a href="#kesenian">Kesenian</a></li>
+                <li><a href="#budaya">Budaya</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="hero">
@@ -781,7 +752,7 @@
         </div>
     </section>
     <footer>
-        <p>Pirlo, Brillian, Nabil, Alfino, Dzaky, Wisnu<br> &copy; 2025 Pesona Kutai Kartanegara. </p>
+        <p>Pirlo, Brillian, Nabil, Alfino, Dzaky, Wisnu<br> 2025 Pesona Kutai Kartanegara. </p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -789,6 +760,35 @@
         AOS.init({
             duration: 1000,
             once: true
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav ul').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                document.querySelector('nav ul').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            }
         });
 
         window.addEventListener('scroll', function() {
